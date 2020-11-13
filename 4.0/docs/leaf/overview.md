@@ -161,17 +161,17 @@ This tag is also useful for building one template on top of another. For example
 
 Using this approach, you would construct a child template that fills in its unique content, then extends the parent template that places the content appropriately. To do this, you can use the `#export` and `#import` tags to store and later retrieve content from the context.
 
-For example, you might create a `child.leaf` template like this:
+For example, you might create a `home.leaf` template like this:
 
 ```leaf
-#extend("master"):
+#extend("layout"):
     #export("body"):
         <p>Welcome to Vapor!</p>
     #endexport
 #endextend
 ```
 
-We call `#export` to store some HTML and make it available to the template we're currently extending. We then render `master.leaf` and use the exported data when required along with any other context variables passed in from Swift. For example, `master.leaf` might look like this:
+We call `#export` to store some HTML and make it available to the template we're currently extending. We then render `layout.leaf` and use the exported data when required along with any other context variables passed in from Swift. For example, `layout.leaf` might look like this:
 
 ```leaf
 <html>
@@ -182,7 +182,7 @@ We call `#export` to store some HTML and make it available to the template we're
 </html>
 ```
 
-Here we are using `#import` to fetch the content passed to the `#extend` tag. When passed `["title": "Hi there!"]` from Swift, `child.leaf` will render as follows:
+Here we are using `#import` to fetch the content passed to the `#extend` tag. When passed `["title": "Hi there!"]` from Swift, `home.leaf` will render as follows:
 
 ```html
 <html>
